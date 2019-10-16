@@ -27,7 +27,7 @@ do
 
 	printf "\e[1;35mProcessing data from ${dir}/${json}.json\e[m\n"
 
-	images=$(cat ${dir}/${json}.json | jq -r ".data.children[].data.preview.images[0].source.url" | egrep '\.jpg|\.png|\.gif' )
+	images=$(cat ${dir}/${json}.json | jq -r ".data.children[].data.preview.images[0].source.url" | egrep '\.jpg|\.png' )
 
 	# download all images from file
 	for img in ${images}
