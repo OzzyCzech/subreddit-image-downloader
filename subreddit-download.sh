@@ -11,7 +11,7 @@ subreddit=${1-catpictures} && json=${subreddit}
 dir=`realpath ${2-${subreddit}}` && mkdir -p ${dir}
 
 # default page=1
-pages=${3-1} 
+pages=${3-1}
 
 ###############################################################################
 # Downloading images
@@ -23,7 +23,7 @@ for i in $(seq ${pages});
 do
 
 	# download subreddit json file
-	curl -sS "https://www.reddit.com/r/${subreddit}.json?limit=100&after=${after}" -A 'random' | json_pp -json_opt utf8,pretty > ${dir}/${json}.json
+	curl -sS "https://www.reddit.com/r/${subreddit}.json?limit=100&after=${after}" -A 'random' | jq '.' > ${dir}/${json}.json
 
 	printf "\e[1;35mProcessing data from ${dir}/${json}.json\e[m\n"
 
